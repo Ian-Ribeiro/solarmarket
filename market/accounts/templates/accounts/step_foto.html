@@ -1,0 +1,9 @@
+{% extends "accounts/cadastro_wizard_base.html" %}
+
+{% block form_content %}
+<h3>Envie uma foto de perfil (opcional)</h3>
+
+{{ form.as_p }}
+
+<button name="wizard_goto_step" value="{{ wizard.steps.next }}">Pular</button>
+{% endblock %}

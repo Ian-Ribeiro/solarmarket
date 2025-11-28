@@ -1,0 +1,11 @@
+<h1>Minha Conta</h1>
+
+<p><strong>Usuário:</strong> {{ request.user.username }}</p>
+
+{% if profile.foto %}
+    <img src="{{ profile.foto.url }}" alt="Foto do usuário" width="150">
+{% else %}
+    <p>Sem foto de perfil</p>
+{% endif %}
+
+<a href="{% url 'editar_foto' %}">Editar Foto</a>

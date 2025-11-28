@@ -1,0 +1,11 @@
+{% extends "accounts/cadastro_wizard_base.html" %}
+
+{% block form_content %}
+<h3>Endereço (Opcional)</h3>
+
+<p>Você pode pular esta etapa se preferir.</p>
+
+{{ form.as_p }}
+
+<button name="wizard_goto_step" value="{{ wizard.steps.next }}">Pular</button>
+{% endblock %}

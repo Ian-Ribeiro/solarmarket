@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - SolarMarket</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <h1>SolarMarket - Cadastro</h1>
+</header>
+
+<main class="wizard-container">
+    <h2>Etapa {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+
+        <div class="wizard-form-block">
+            {% block form_content %}
+            {% endblock %}
+        </div>
+
+        <div class="wizard-btns">
+            {% if wizard.steps.prev %}
+                <button name="wizard_goto_step" value="{{ wizard.steps.prev }}">Voltar</button>
+            {% endif %}
+            <button type="submit">Continuar</button>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>

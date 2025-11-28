@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarMarket - Início</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>SolarMarket</h1>
+        <nav>
+            <a href="{% url 'index' %}">Início</a>
+            <a href="#">Produtos</a>
+            <a href="{% url 'cadastrar' %}">Cadastre-se</a>
+            <a href="{% url 'minha_conta' %}">Minha Conta</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Energia solar para todos</h2>
+        <p>Bem-vindo ao maior marketplace especializado em energia solar.</p>
+
+        <a class="btn" href="{% url 'cadastrar' %}">
+            Criar minha conta
+        </a>
+    </section>
+
+    <section class="beneficios">
+        <h3>Por que escolher energia solar?</h3>
+
+        <ul>
+            <li>✓ Economia na conta de luz</li>
+            <li>✓ Instalação rápida</li>
+            <li>✓ Energia limpa e sustentável</li>
+            <li>✓ Produtos certificados</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 SolarMarket - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
