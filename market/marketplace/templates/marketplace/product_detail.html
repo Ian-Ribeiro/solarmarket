@@ -1,0 +1,30 @@
+{% load static %}
+
+<div>
+
+    <h1>{{ products.nome }}</h1>
+
+    {% if products.imagem %}
+        <img src="{{ products.imagem.url }}" alt="{{ products.nome }}" width="80" style="border-radius: 6px;">
+    {% else %}
+        <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem">
+    {% endif %}
+
+    <p><strong>Categoria:</strong> {{ products.categoria.nome }}</p>
+
+    <p><strong>Descrição:</strong> {{ products.descricao }}</p>
+
+    <p><strong>Preço:</strong> R$ {{ products.preco }}</p>
+
+    <p>
+        <strong>Disponibilidade:</strong>
+        {% if products.disponivel %}
+            <span style="color: green;">Disponível</span>
+        {% else %}
+            <span style="color: red;">Indisponível</span>
+        {% endif %}
+    </p>
+
+    <a href="{% url 'add_to_cart' products.pk %}" class="btn">Adicionar ao Carrinho</a>
+
+</div>

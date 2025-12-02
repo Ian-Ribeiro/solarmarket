@@ -14,10 +14,32 @@
     <header>
         <h1>SolarMarket</h1>
         <nav>
+
+            <!-- Sempre visível -->
             <a href="{% url 'index' %}">Início</a>
-            <a href="#">Produtos</a>
-            <a href="{% url 'cadastrar' %}">Cadastre-se</a>
-            <a href="{% url 'minha_conta' %}">Minha Conta</a>
+            <a href="{% url 'product_list' %}">Produtos</a>
+            <a href="{% url 'cart_detail' %}">Carrinho</a>
+
+            {% if user.is_authenticated %}
+
+                <!-- Visível apenas quando logado -->
+                <a href="{% url 'minha_conta' %}">Minha Conta</a>
+
+                {% if user.is_staff %}
+                    <!-- Visível apenas para admin -->
+                    <a href="{% url 'product_create' %}">Cadastrar Produtos</a>
+                {% endif %}
+
+                <a href="{% url 'logout' %}">Sair</a>
+
+            {% else %}
+
+                <!-- Visível apenas quando deslogado -->
+                <a href="{% url 'cadastrar' %}">Criar Conta</a>
+                <a href="{% url 'login' %}">Entrar</a>
+
+            {% endif %}
+
         </nav>
     </header>
 
@@ -25,9 +47,11 @@
         <h2>Energia solar para todos</h2>
         <p>Bem-vindo ao maior marketplace especializado em energia solar.</p>
 
+        {% if not user.is_authenticated %}
         <a class="btn" href="{% url 'cadastrar' %}">
             Criar minha conta
         </a>
+        {% endif %}
     </section>
 
     <section class="beneficios">

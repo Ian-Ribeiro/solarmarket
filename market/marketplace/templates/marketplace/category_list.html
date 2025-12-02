@@ -1,0 +1,11 @@
+<h1>Categorias</h1>
+
+<a href="{% url 'category_create' %}">Criar Categoria</a>
+
+<ul>
+    {% for c in categories %}
+        <li>{{ c.name }}</li>
+    {% empty %}
+        <li>Nenhuma categoria cadastrada.</li>
+    {% endfor %}
+</ul>

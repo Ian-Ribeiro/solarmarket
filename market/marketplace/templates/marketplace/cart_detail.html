@@ -1,0 +1,32 @@
+{% load static %}
+
+<h1>Meu Carrinho</h1>
+
+{% if cart.items.all %}
+<ul>
+    {% for item in cart.items.all %}
+        <li>
+            {% if item.product.imagem %}
+                <img src="{{ item.product.imagem.url }}" 
+                     alt="{{ item.product.nome }}" 
+                     width="80" style="border-radius: 6px;">
+            {% else %}
+                <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem" width="80">
+            {% endif %}
+
+            <strong>{{ item.product.nome }}</strong>  
+            — Quantidade: {{ item.quantity }}  
+            — Subtotal: R$ {{ item.subtotal }}
+
+            <a href="{% url 'remove_from_cart' item.pk %}">
+                Remover
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Total: R$ {{ cart.total }}</h3>
+
+{% else %}
+<p>Seu carrinho está vazio.</p>
+{% endif %}

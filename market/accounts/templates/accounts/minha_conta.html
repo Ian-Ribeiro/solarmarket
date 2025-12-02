@@ -2,10 +2,6 @@
 
 <p><strong>Usuário:</strong> {{ request.user.username }}</p>
 
-{% if profile.foto %}
-    <img src="{{ profile.foto.url }}" alt="Foto do usuário" width="150">
-{% else %}
-    <p>Sem foto de perfil</p>
-{% endif %}
+<img src="{{ profile.foto.url }}" alt="Foto de perfil" width="150">
 
 <a href="{% url 'editar_foto' %}">Editar Foto</a>

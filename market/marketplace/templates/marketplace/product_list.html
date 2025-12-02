@@ -1,0 +1,32 @@
+{% load static %}
+
+<h1>Produtos</h1>
+
+{% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'category_create' %}">Criar Categoria</a>
+    <a href="{% url 'product_create' %}">Criar Produto</a>
+{% endif %}
+
+<ul>
+    {% for p in products %}
+        <li>
+            {% if p.imagem %}
+                <img src="{{ p.imagem.url }}" alt="{{ p.nome }}" width="80" style="border-radius: 6px;">
+            {% else %}
+                <img src="{% static 'img/sem-foto.jpeg' %}" alt="Sem imagem" width="80" style="border-radius: 6px;">
+            {% endif %}
+
+            {{ p.nome }} — R$ {{ p.preco }} — 
+            {% if p.disponivel %}
+                Disponível
+            {% else %}
+                Indisponível
+            {% endif %}
+
+            <!-- AGORA SIM: link "Mais" dentro do loop -->
+            <a href="{% url 'product_detail' p.pk %}">Mais</a>
+        </li>
+    {% empty %}
+        <li>Nenhum produto cadastrado.</li>
+    {% endfor %}
+</ul>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from formtools.wizard.views import SessionWizardView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 from .forms import (
     UserForm,
@@ -114,6 +115,9 @@ class CadastroWizard(SessionWizardView):
         return render(self.request, "accounts/cadastro_concluido.html", {"user": user})
 
 
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 @login_required
 def minha_conta(request):
