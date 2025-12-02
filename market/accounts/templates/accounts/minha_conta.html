@@ -1,7 +1,62 @@
+{% load static %}
+{% include 'core/header.html' %}
+
 <h1>Minha Conta</h1>
 
-<p><strong>Usuário:</strong> {{ request.user.username }}</p>
+<!-- FOTO -->
+{% if profile.foto %}
+    <img src="{{ profile.foto.url }}" width="150">
+{% else %}
+    <img src="{% static 'img/default_user.png' %}" width="150">
+{% endif %}
 
-<img src="{{ profile.foto.url }}" alt="Foto de perfil" width="150">
+<!-- Nome / Razão Social -->
+<p>
+    <strong>Nome:</strong>
+    {% if pf %}
+        {{ pf.nome }}
+    {% elif pj %}
+        {{ pj.nome_fantasia }}
+    {% else %}
+        {{ usuario.username }}
+    {% endif %}
+</p>
 
-<a href="{% url 'editar_foto' %}">Editar Foto</a>
+<p><strong>Email:</strong> {{ usuario.email }}</p>
+
+<!-- Tipo de conta -->
+<p>
+    <strong>Tipo de Conta:</strong>
+    {% if usuario.is_superuser %}
+        Administrador
+    {% elif pf %}
+        Pessoa Física
+    {% elif pj %}
+        Pessoa Jurídica
+    {% else %}
+        Não definido
+    {% endif %}
+</p>
+
+<!-- Dados específicos PF -->
+{% if pf %}
+    <p><strong>CPF:</strong> {{ pf.cpf }}</p>
+    <p><strong>Telefone:</strong> {{ pf.telefone_principal }}</p>
+{% endif %}
+
+<!-- Dados específicos PJ -->
+{% if pj %}
+    <p><strong>CNPJ:</strong> {{ pj.cnpj }}</p>
+    <p><strong>Razão Social:</strong> {{ pj.razao_social }}</p>
+    <p><strong>Telefone:</strong> {{ pj.telefone_principal }}</p>
+{% endif %}
+
+<!-- OPÇÃO DE EDITAR FOTO -->
+<p>
+    <a href="{% url 'editar_foto' %}">Alterar Foto do Perfil</a>
+</p>
+
+<!-- OPÇÃO DE MUDAR SENHA -->
+<p>
+    <a href="{% url 'password_change' %}">Redefinir Senha</a>
+</p>

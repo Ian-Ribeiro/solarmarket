@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarMarket - Início</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <h1>SolarMarket</h1>
+    <nav>
+
+        <!-- Sempre visível -->
+        <a href="{% url 'index' %}">Início</a>
+        <a href="{% url 'product_list' %}">Produtos</a>
+        <a href="{% url 'cart_detail' %}">Carrinho</a>
+
+        {% if user.is_authenticated %}
+
+            <!-- Visível apenas quando logado -->
+            <a href="{% url 'minha_conta' %}">Minha Conta</a>
+
+            {% if user.is_staff %}
+                <!-- Visível apenas para admin -->
+                <a href="{% url 'product_create' %}">Cadastrar Produtos</a>
+            {% endif %}
+
+            <a href="{% url 'logout' %}">Sair</a>
+
+        {% else %}
+
+            <!-- Visível apenas quando deslogado -->
+            <a href="{% url 'cadastrar' %}">Criar Conta</a>
+            <a href="{% url 'login' %}">Entrar</a>
+
+        {% endif %}
+
+    </nav>
+</header>

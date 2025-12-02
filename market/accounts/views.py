@@ -95,7 +95,6 @@ class CadastroWizard(SessionWizardView):
                 email=user.email,
                 telefone_principal=pf_data.get("telefone_principal"),
                 telefone_secundario=pf_data.get("telefone_secundario"),
-                site=pf_data.get("site"),
             )
         elif tipo == "pj":
             pj_data = self.get_cleaned_data_for_step("pj")
@@ -121,9 +120,27 @@ def logout_view(request):
 
 @login_required
 def minha_conta(request):
-    profile = request.user.profile  # acessa o perfil vinculado ao usuário
-    return render(request, "accounts/minha_conta.html", {"profile": profile})
+    profile = Profile.objects.get(user=request.user)
 
+    # Descobrir se é PF ou PJ
+    try:
+        pf = PessoaFisica.objects.get(usuario=request.user)
+    except PessoaFisica.DoesNotExist:
+        pf = None
+
+    try:
+        pj = PessoaJuridica.objects.get(usuario=request.user)
+    except PessoaJuridica.DoesNotExist:
+        pj = None
+
+    contexto = {
+        "usuario": request.user,
+        "profile": profile,
+        "pf": pf,
+        "pj": pj
+    }
+
+    return render(request, "accounts/minha_conta.html", contexto)
 
 @login_required
 def editar_foto(request):

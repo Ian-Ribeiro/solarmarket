@@ -1,0 +1,9 @@
+{% block content %}
+<h2>Alterar Senha</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Alterar senha</button>
+</form>
+{% endblock %}
