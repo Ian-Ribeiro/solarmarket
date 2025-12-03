@@ -15,8 +15,10 @@
                 <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem" width="80">
             {% endif %}
 
-            <strong>{{ item.product.nome }}</strong>  
-            — Quantidade: {{ item.quantity }}  
+            <strong>{{ item.product.nome }}</strong>
+            <a href="{% url 'remove_one' item.product.id %}">-</a>
+            <span>{{ item.quantity }}</span>
+            <a href="{% url 'add_to_cart' item.product.id %}">+</a>
             — Subtotal: R$ {{ item.subtotal }}
 
             <a href="{% url 'remove_from_cart' item.pk %}">
@@ -27,6 +29,15 @@
 </ul>
 
 <h3>Total: R$ {{ cart.total }}</h3>
+
+<!-- ===================================== -->
+<!-- BOTÃO DO STRIPE -->
+<!-- ===================================== -->
+
+<form action="{% url 'create_checkout_session' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Finalizar Pagamento</button>
+</form>
 
 {% else %}
 <p>Seu carrinho está vazio.</p>

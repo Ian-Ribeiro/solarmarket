@@ -88,11 +88,10 @@ class CadastroWizard(SessionWizardView):
             pf_data = self.get_cleaned_data_for_step("pf")
             PessoaFisica.objects.create(
                 usuario=user,
-                nome=pf_data.get("nome"),
+                nome_completo=pf_data.get("nome_completo"),
                 cpf=pf_data.get("cpf"),
                 data_nascimento=pf_data.get("data_nascimento"),
                 rg=pf_data.get("rg"),
-                email=user.email,
                 telefone_principal=pf_data.get("telefone_principal"),
                 telefone_secundario=pf_data.get("telefone_secundario"),
             )
@@ -103,7 +102,6 @@ class CadastroWizard(SessionWizardView):
                 cnpj=pj_data.get("cnpj"),
                 razao_social=pj_data.get("razao_social"),
                 nome_fantasia=pj_data.get("nome_fantasia"),
-                email=user.email,
                 telefone_principal=pj_data.get("telefone_principal"),
                 telefone_secundario=pj_data.get("telefone_secundario"),
                 site=pj_data.get("site"),

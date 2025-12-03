@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'quotes',
     'reviews',
     'dashboard',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/accounts/minha-conta/'  # depois de logar
 LOGIN_URL = '/accounts/login/'                 # URL para login
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")

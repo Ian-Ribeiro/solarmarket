@@ -8,26 +8,35 @@
     <a href="{% url 'product_create' %}">Criar Produto</a>
 {% endif %}
 
-<ul>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="products-grid">
+
     {% for p in products %}
-        <li>
-            {% if p.imagem %}
-                <img src="{{ p.imagem.url }}" alt="{{ p.nome }}" width="80" style="border-radius: 6px;">
-            {% else %}
-                <img src="{% static 'img/sem-foto.jpeg' %}" alt="Sem imagem" width="80" style="border-radius: 6px;">
-            {% endif %}
+    <div class="product-card">
+        {% if p.imagem %}
+            <img src="{{ p.imagem.url }}" alt="{{ p.nome }}" width="80" style="border-radius: 6px;">
+        {% else %}
+            <img src="{% static 'img/sem-foto.jpeg' %}" alt="Sem imagem" width="80" style="border-radius: 6px;">
+        {% endif %}
+        
+        <h3>{{ p.nome }}</h3>
 
-            {{ p.nome }} — R$ {{ p.preco }} — 
+        <p class="product-price">R$ {{ p.preco }}</p>
+
+        <p class="product-status">
             {% if p.disponivel %}
-                Disponível
+                <span class="product-status" style="color: green;">Disponível</span>
             {% else %}
-                Indisponível
+                <span class="product-status" style="color: red;">Indisponível</span>
             {% endif %}
+        </p>
+        <a href="{% url 'product_detail' p.pk %}">Mais</a>
 
-            <!-- AGORA SIM: link "Mais" dentro do loop -->
-            <a href="{% url 'product_detail' p.pk %}">Mais</a>
-        </li>
-    {% empty %}
-        <li>Nenhum produto cadastrado.</li>
+    </div>
     {% endfor %}
-</ul>
+
+</div>
+

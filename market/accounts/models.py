@@ -59,17 +59,21 @@ class Profile(models.Model):
 
 class Pessoa(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    email = models.EmailField()
     telefone_principal = models.CharField(max_length=20)
     telefone_secundario = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         abstract = True
+        
+    @property
+    def email_usuario(self):
+        """Usa o email do usuário automaticamente."""
+        return self.usuario.email
 
 
 class PessoaFisica(Pessoa):
     cpf = models.CharField(max_length=11, unique=True)
-    nome = models.CharField(max_length=150)
+    nome_completo = models.CharField(max_length=150)
     data_nascimento = models.DateField()
     rg = models.CharField(max_length=20)
 

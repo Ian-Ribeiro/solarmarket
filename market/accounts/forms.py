@@ -24,12 +24,14 @@ class TipoPessoaForm(forms.Form):
 class PessoaFisicaForm(forms.ModelForm):
     class Meta:
         model = PessoaFisica
+        fields = "__all__"
         exclude = ["usuario"]
 
 
 class PessoaJuridicaForm(forms.ModelForm):
     class Meta:
         model = PessoaJuridica
+        fields = "__all__"
         exclude = ["usuario"]
 
 

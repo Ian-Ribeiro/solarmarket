@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 
+
 def category_list(request):
     categories = Categoria.objects.all()
     return render(request, "marketplace/category_list.html", {"categories": categories})
@@ -45,22 +46,37 @@ def product_detail(request, pk):
     return render(request, "marketplace/product_detail.html", {"products": products})
 
 @login_required
-def add_to_cart(request, pk):
-    product = get_object_or_404(Produto, pk=pk)
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Produto, id=product_id)
 
     cart, created = Cart.objects.get_or_create(user=request.user)
 
-    item, created = CartItem.objects.get_or_create(
-        cart=cart,
-        product=product
-    )
+    # Verifica se já existe item no carrinho
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
 
     if not created:
-        item.quantity += 1
-        item.save()
+        cart_item.quantity += 1
 
-    return redirect("cart_detail")
+    cart_item.save()
+    return redirect('cart_detail')
 
+@login_required
+def remove_one(request, product_id):
+    product = get_object_or_404(Produto, id=product_id)
+    cart = get_object_or_404(Cart, user=request.user)
+
+    try:
+        cart_item = CartItem.objects.get(cart=cart, product=product)
+    except CartItem.DoesNotExist:
+        return redirect('cart_detail')
+
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()
+    else:
+        cart_item.delete()
+
+    return redirect('cart_detail')
 
 @login_required
 def cart_detail(request):
