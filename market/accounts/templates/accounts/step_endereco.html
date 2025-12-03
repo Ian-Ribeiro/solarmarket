@@ -5,7 +5,11 @@
 
 <p>Você pode pular esta etapa se preferir.</p>
 
-{{ form.as_p }}
+<div class="step-endereco-container">
+    {{ form.as_p }}
+</div>
 
-<button name="wizard_goto_step" value="{{ wizard.steps.next }}">Pular</button>
+<button class="btn btn-secondary" name="wizard_goto_step" value="{{ wizard.steps.next }}">
+    Pular
+</button>
 {% endblock %}

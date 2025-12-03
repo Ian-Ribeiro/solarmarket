@@ -3,7 +3,11 @@
 {% block form_content %}
 <h3>Envie uma foto de perfil (opcional)</h3>
 
-{{ form.as_p }}
+<div class="step-foto-container">
+    {{ form.as_p }}
+</div>
 
-<button name="wizard_goto_step" value="{{ wizard.steps.next }}">Pular</button>
+<button class="btn btn-secondary" name="wizard_goto_step" value="{{ wizard.steps.next }}">
+    Pular
+</button>
 {% endblock %}

@@ -3,7 +3,9 @@
 {% block form_content %}
 <h3>Você é pessoa física ou jurídica?</h3>
 
-{{ form.as_p }}
+<div class="tipo-pessoa-opcoes">
+    {{ form.as_p }}
+</div>
 
 <p>Selecione uma opção para continuar.</p>
 {% endblock %}

@@ -1,42 +1,73 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos</title>
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/cards.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/header.css' %}">
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="{% static 'core/css/marketplace/product_list.css' %}">
+</head>
+
+<body>
+
 {% include 'core/header.html' %}
 
-<h1>Produtos</h1>
+<div class="container">
 
-{% if user.is_authenticated and user.is_staff %}
-    <a href="{% url 'category_create' %}">Criar Categoria</a>
-    <a href="{% url 'product_create' %}">Criar Produto</a>
-{% endif %}
+    <h1 class="page-title">Produtos</h1>
 
-{% load static %}
+    {% if user.is_authenticated and user.is_staff %}
+    <div class="admin-actions">
+        <a href="{% url 'category_create' %}" class="btn btn-primary">Criar Categoria</a>
+        <a href="{% url 'product_create' %}" class="btn btn-accent">Criar Produto</a>
+    </div>
+    {% endif %}
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <div class="products-grid">
 
-<div class="products-grid">
+        {% for p in products %}
+        <div class="product-card card">
 
-    {% for p in products %}
-    <div class="product-card">
-        {% if p.imagem %}
-            <img src="{{ p.imagem.url }}" alt="{{ p.nome }}" width="80" style="border-radius: 6px;">
-        {% else %}
-            <img src="{% static 'img/sem-foto.jpeg' %}" alt="Sem imagem" width="80" style="border-radius: 6px;">
-        {% endif %}
-        
-        <h3>{{ p.nome }}</h3>
+            <div class="image-wrapper">
+                {% if p.imagem %}
+                    <img src="{{ p.imagem.url }}" alt="{{ p.nome }}">
+                {% else %}
+                    <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem">
+                {% endif %}
+            </div>
 
-        <p class="product-price">R$ {{ p.preco }}</p>
+            <div class="card-body">
+                <h3 class="card-title">{{ p.nome }}</h3>
 
-        <p class="product-status">
-            {% if p.disponivel %}
-                <span class="product-status" style="color: green;">Disponível</span>
-            {% else %}
-                <span class="product-status" style="color: red;">Indisponível</span>
-            {% endif %}
-        </p>
-        <a href="{% url 'product_detail' p.pk %}">Mais</a>
+                <p class="product-price">R$ {{ p.preco }}</p>
+
+                <p class="product-status">
+                    {% if p.disponivel %}
+                        <span class="status-available">Disponível</span>
+                    {% else %}
+                        <span class="status-unavailable">Indisponível</span>
+                    {% endif %}
+                </p>
+
+                <a href="{% url 'product_detail' p.pk %}" class="btn btn-secondary">
+                    Detalhes
+                </a>
+            </div>
+
+        </div>
+        {% endfor %}
 
     </div>
-    {% endfor %}
 
 </div>
 
+</body>
+</html>

@@ -1,62 +1,99 @@
 {% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta</title>
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="{% static 'core/css/account/minha_conta.css' %}">
+</head>
+
+<body>
+
 {% include 'core/header.html' %}
 
-<h1>Minha Conta</h1>
+<div class="account-container">
 
-<!-- FOTO -->
-{% if profile.foto %}
-    <img src="{{ profile.foto.url }}" width="150">
-{% else %}
-    <img src="{% static 'img/default_user.png' %}" width="150">
-{% endif %}
+    <h1 class="page-title">Minha Conta</h1>
 
-<!-- Nome / Razão Social -->
-<p>
-    <strong>Nome:</strong>
-    {% if pf %}
-        {{ pf.nome_completo }}
-    {% elif pj %}
-        {{ pj.nome_fantasia }}
-    {% else %}
-        {{ usuario.username }}
-    {% endif %}
-</p>
+    <!-- FOTO DO PERFIL -->
+    <div class="profile-photo">
+        {% if profile.foto %}
+            <img src="{{ profile.foto.url }}" alt="Foto do perfil">
+        {% else %}
+            <img src="{% static 'img/default_user.png' %}" alt="Foto padrão">
+        {% endif %}
+    </div>
 
-<p><strong>Email:</strong> {{ usuario.email }}</p>
+    <!-- DADOS BÁSICOS -->
+    <div class="account-info">
 
-<!-- Tipo de conta -->
-<p>
-    <strong>Tipo de Conta:</strong>
-    {% if usuario.is_superuser %}
-        Administrador
-    {% elif pf %}
-        Pessoa Física
-    {% elif pj %}
-        Pessoa Jurídica
-    {% else %}
-        Não definido
-    {% endif %}
-</p>
+        <!-- Nome -->
+        <p><strong>Nome:</strong>
+            {% if pf %}
+                {{ pf.nome_completo }}
+            {% elif pj %}
+                {{ pj.nome_fantasia }}
+            {% else %}
+                {{ usuario.username }}
+            {% endif %}
+        </p>
 
-<!-- Dados específicos PF -->
-{% if pf %}
-    <p><strong>CPF:</strong> {{ pf.cpf }}</p>
-    <p><strong>Telefone:</strong> {{ pf.telefone_principal }}</p>
-{% endif %}
+        <p><strong>Email:</strong> {{ usuario.email }}</p>
 
-<!-- Dados específicos PJ -->
-{% if pj %}
-    <p><strong>CNPJ:</strong> {{ pj.cnpj }}</p>
-    <p><strong>Razão Social:</strong> {{ pj.razao_social }}</p>
-    <p><strong>Telefone:</strong> {{ pj.telefone_principal }}</p>
-{% endif %}
+        <!-- Tipo de Conta -->
+        <p><strong>Tipo de Conta:</strong>
+            {% if usuario.is_superuser %}
+                Administrador
+            {% elif pf %}
+                Pessoa Física
+            {% elif pj %}
+                Pessoa Jurídica
+            {% else %}
+                Não definido
+            {% endif %}
+        </p>
 
-<!-- OPÇÃO DE EDITAR FOTO -->
-<p>
-    <a href="{% url 'editar_foto' %}">Alterar Foto do Perfil</a>
-</p>
+        <!-- Dados PF -->
+        {% if pf %}
+            <p><strong>CPF:</strong> {{ pf.cpf }}</p>
+            <p><strong>Telefone:</strong> {{ pf.telefone_principal }}</p>
+        {% endif %}
 
-<!-- OPÇÃO DE MUDAR SENHA -->
-<p>
-    <a href="{% url 'password_change' %}">Redefinir Senha</a>
-</p>
+        <!-- Dados PJ -->
+        {% if pj %}
+            <p><strong>CNPJ:</strong> {{ pj.cnpj }}</p>
+            <p><strong>Razão Social:</strong> {{ pj.razao_social }}</p>
+            <p><strong>Telefone:</strong> {{ pj.telefone_principal }}</p>
+        {% endif %}
+
+    </div>
+
+    <!-- AÇÕES -->
+    <div class="account-actions">
+
+        <a class="btn btn-primary" href="{% url 'editar_foto' %}">
+            Alterar Foto do Perfil
+        </a>
+
+        <a class="btn btn-accent" href="{% url 'password_change' %}">
+            Redefinir Senha
+        </a>
+
+        <a class="btn btn-secondary" href="{% url 'logout' %}">
+            Sair
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

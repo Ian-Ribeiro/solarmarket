@@ -1,5 +1,26 @@
 {% include 'core/header.html' %}
 
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarMarket - Início</title>
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/header.css' %}">
+
+    <!-- CSS EXCLUSIVO DA HOMEPAGE -->
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+</head>
+
+<body>
+
 <section class="hero">
     <h2>Energia solar para todos</h2>
     <p>Bem-vindo ao maior marketplace especializado em energia solar.</p>

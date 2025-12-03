@@ -1,21 +1,31 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - SolarMarket</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+
+    <!-- CSS ESPECÍFICO DO WIZARD -->
+    <link rel="stylesheet" href="{% static 'core/css/account/cadastro_wizard_base.css' %}">
 </head>
 
 <body>
 
-<header>
-    <h1>SolarMarket - Cadastro</h1>
-</header>
+{% include 'core/header.html' %}
 
 <main class="wizard-container">
-    <h2>Etapa {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</h2>
+
+    <h2 class="wizard-step-title">
+        Etapa {{ wizard.steps.step1 }} de {{ wizard.steps.count }}
+    </h2>
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -26,13 +36,20 @@
             {% endblock %}
         </div>
 
-        <div class="wizard-btns">
+        <div class="wizard-actions">
             {% if wizard.steps.prev %}
-                <button name="wizard_goto_step" value="{{ wizard.steps.prev }}">Voltar</button>
+                <button class="btn btn-secondary" name="wizard_goto_step" value="{{ wizard.steps.prev }}">
+                    Voltar
+                </button>
             {% endif %}
-            <button type="submit">Continuar</button>
+
+            <button class="btn btn-primary" type="submit">
+                Continuar
+            </button>
         </div>
+
     </form>
+
 </main>
 
 </body>

@@ -1,31 +1,66 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.nome }}</title>
+
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/header.css' %}">
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="{% static 'core/css/marketplace/product_detail.css' %}">
+</head>
+
+<body>
+
 {% include 'core/header.html' %}
 
-<div>
+<div class="container">
 
-    <h1>{{ products.nome }}</h1>
+    <div class="product-detail-wrapper">
 
-    {% if products.imagem %}
-        <img src="{{ products.imagem.url }}" alt="{{ products.nome }}" width="80" style="border-radius: 6px;">
-    {% else %}
-        <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem">
-    {% endif %}
+        <div class="product-detail-image">
+            {% if product.imagem %}
+                <img src="{{ product.imagem.url }}" alt="{{ product.nome }}">
+            {% else %}
+                <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem">
+            {% endif %}
+        </div>
 
-    <p><strong>Categoria:</strong> {{ products.categoria.nome }}</p>
+        <div class="product-info">
+            <h1>{{ product.nome }}</h1>
 
-    <p><strong>Descrição:</strong> {{ products.descricao }}</p>
+            <p class="product-price">R$ {{ product.preco }}</p>
 
-    <p><strong>Preço:</strong> R$ {{ products.preco }}</p>
+            <p class="product-status">
+                Disponibilidade:
+                {% if product.disponivel %}
+                    <span class="status-available">Disponível</span>
+                {% else %}
+                    <span class="status-unavailable">Indisponível</span>
+                {% endif %}
+            </p>
 
-    <p>
-        <strong>Disponibilidade:</strong>
-        {% if products.disponivel %}
-            <span style="color: green;">Disponível</span>
-        {% else %}
-            <span style="color: red;">Indisponível</span>
-        {% endif %}
-    </p>
+            <a href="{% url 'cart_add' product.pk %}" class="btn btn-accent buy-button">
+                Adicionar ao Carrinho
+            </a>
 
-    <a href="{% url 'add_to_cart' products.pk %}" class="btn">Adicionar ao Carrinho</a>
+            <div class="product-description">
+                <p>{{ product.descricao|linebreaks }}</p>
+            </div>
+
+            <div class="extra-info">
+                <p><strong>Categoria:</strong> {{ product.categoria }}</p>
+            </div>
+        </div>
+
+    </div>
 
 </div>
+
+</body>
+</html>

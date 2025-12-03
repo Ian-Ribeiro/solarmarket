@@ -1,9 +1,35 @@
-<h1>Cadastro - Usuário</h1>
+{% load static %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ wizard.management_form }}
-    {{ wizard.form.as_p }}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Usuário</title>
 
-    <button type="submit">Próximo</button>
-</form>
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/account/cadastro_usuario.css' %}">
+</head>
+
+<body>
+
+{% include 'core/header.html' %}
+
+<div class="cadastro-container">
+
+    <h1>Cadastro - Usuário</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+        {{ wizard.form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Próximo</button>
+    </form>
+
+</div>
+
+</body>
+</html>

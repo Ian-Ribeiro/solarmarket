@@ -1,44 +1,71 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho</title>
+
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/marketplace/cart_detail.css' %}">
+</head>
+
+<body>
+
 {% include 'core/header.html' %}
 
-<h1>Meu Carrinho</h1>
+<div class="container">
 
-{% if cart.items.all %}
-<ul>
-    {% for item in cart.items.all %}
-        <li>
-            {% if item.product.imagem %}
-                <img src="{{ item.product.imagem.url }}" 
-                     alt="{{ item.product.nome }}" 
-                     width="80" style="border-radius: 6px;">
-            {% else %}
-                <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem" width="80">
-            {% endif %}
+    <h1 class="page-title">Carrinho</h1>
 
-            <strong>{{ item.product.nome }}</strong>
-            <a href="{% url 'remove_one' item.product.id %}">-</a>
-            <span>{{ item.quantity }}</span>
-            <a href="{% url 'add_to_cart' item.product.id %}">+</a>
-            — Subtotal: R$ {{ item.subtotal }}
+    {% if cart.items.all %}
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Imagem</th>
+                <th>Preço</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
 
-            <a href="{% url 'remove_from_cart' item.pk %}">
-                Remover
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+        <tbody>
+            {% for item in cart.items.all %}
+            <tr>
+                <td>{{ item.product.nome }}</td>
 
-<h3>Total: R$ {{ cart.total }}</h3>
+                <td>
+                    <div class="cart-image">
+                        {% if item.product.imagem %}
+                        <img src="{{ item.product.imagem.url }}">
+                        {% else %}
+                        <img src="{% static 'img/sem_foto.jpeg' %}">
+                        {% endif %}
+                    </div>
+                </td>
 
-<!-- ===================================== -->
-<!-- BOTÃO DO STRIPE -->
-<!-- ===================================== -->
+                <td>R$ {{ item.product.preco }}</td>
+                <td>R$ {{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-<form action="{% url 'create_checkout_session' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit">Finalizar Pagamento</button>
-</form>
+    <p class="cart-total">Total: R$ {{ cart.total }}</p>
 
-{% else %}
-<p>Seu carrinho está vazio.</p>
-{% endif %}
+    <div class="cart-actions">
+        <a href="{% url 'product_list' %}" class="btn btn-secondary">Continuar Comprando</a>
+        <a href="{% url 'checkout' %}" class="btn btn-accent">Finalizar Compra</a>
+    </div>
+
+    {% else %}
+    <p class="empty-cart">Seu carrinho está vazio.</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary">Ver Produtos</a>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

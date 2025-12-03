@@ -1,11 +1,45 @@
-<h1>Categorias</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorias</title>
 
-<a href="{% url 'category_create' %}">Criar Categoria</a>
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/marketplace/category_list.css' %}">
+</head>
 
-<ul>
-    {% for c in categories %}
-        <li>{{ c.name }}</li>
-    {% empty %}
-        <li>Nenhuma categoria cadastrada.</li>
-    {% endfor %}
-</ul>
+<body>
+
+{% include 'core/header.html' %}
+
+<div class="container">
+
+    <h1 class="page-title">Categorias</h1>
+
+    <div class="admin-actions">
+        <a href="{% url 'category_create' %}" class="btn btn-primary">Criar Categoria</a>
+    </div>
+
+    <div class="category-grid">
+        {% for c in categorias %}
+        <div class="category-card">
+
+            <h3 class="category-title">{{ c.nome }}</h3>
+
+            <div class="category-actions">
+                <a href="{% url 'category_update' c.pk %}" class="btn btn-secondary">Editar</a>
+                <a href="{% url 'category_delete' c.pk %}" class="btn btn-accent">Excluir</a>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

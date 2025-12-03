@@ -1,7 +1,41 @@
-<h1>Criar Categoria</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-</form>
+    <title>Categoria</title>
+
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/marketplace/category_form.css' %}">
+</head>
+
+<body>
+
+{% include 'core/header.html' %}
+
+<div class="container">
+
+    <div class="category-form-card">
+
+        <h1>{{ title }}</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="category-form-buttons">
+                <a href="{% url 'category_list' %}" class="btn btn-secondary">Voltar</a>
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

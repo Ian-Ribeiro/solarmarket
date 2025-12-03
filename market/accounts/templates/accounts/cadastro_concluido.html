@@ -1,10 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Cadastro concluído</title>
+    <meta charset="UTF-8">
+    <title>Cadastro Concluído</title>
+
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/account/cadastro_concluido.css' %}">
 </head>
+
 <body>
-    <h1>Cadastro concluído com sucesso!</h1>
-    <a href="{% url 'index' %}">Voltar para o início</a>
+
+{% include 'core/header.html' %}
+
+<div class="cadastro-final-container">
+
+    <h1>Cadastro Concluído com Sucesso!</h1>
+
+    <a class="btn btn-primary" href="{% url 'index' %}">
+        Voltar para o Início
+    </a>
+
+</div>
+
 </body>
 </html>

@@ -1,8 +1,49 @@
-<h1>Novo Produto</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar / Editar Produto</title>
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
+    <!-- GLOBAL -->
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/header.css' %}">
 
-    <button type="submit">Salvar</button>
-</form>
+    <!-- SPECIFIC -->
+    <link rel="stylesheet" href="{% static 'core/css/marketplace/product_form.css' %}">
+</head>
+
+<body>
+
+{% include 'core/header.html' %}
+
+<div class="container">
+
+    <div class="product-form-card">
+
+        <h1>{{ title }}</h1>
+
+        {% if product.imagem %}
+        <div class="image-preview">
+            <img src="{{ product.imagem.url }}" alt="{{ product.nome }}">
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="product-form-buttons">
+                <a href="{% url 'product_list' %}" class="btn btn-secondary">Voltar</a>
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
