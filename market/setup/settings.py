@@ -138,6 +138,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/accounts/minha-conta/'  # depois de logar
 LOGIN_URL = '/accounts/login/'                 # URL para login
 
+
+# Stripe API keys
 import os
 from dotenv import load_dotenv
 
@@ -145,3 +147,13 @@ load_dotenv()
 
 STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+
+
+# Configurações de email.
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "seuemail@gmail.com"
+EMAIL_HOST_PASSWORD = "SUA SENHA OU APP PASSWORD"
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -16,7 +16,11 @@ class Categoria(models.Model):
 
 class Produto(models.Model):
     nome = models.CharField(max_length=150)
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name="produtos")
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete=models.CASCADE,
+        related_name="produtos"
+    )
     descricao = models.TextField()
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     estoque = models.PositiveIntegerField()
@@ -31,26 +35,3 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.nome
-
-class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cart")
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def total(self):
-        return sum(item.subtotal() for item in self.items.all())
-
-    def __str__(self):
-        return f"Carrinho de {self.user.username}"
-
-
-class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
-    product = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
-
-    def subtotal(self):
-        return self.product.preco * self.quantity
-
-    def __str__(self):
-        return f"{self.product.nome} x {self.quantity}"
-    

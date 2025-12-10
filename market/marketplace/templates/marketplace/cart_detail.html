@@ -1,44 +1,67 @@
 {% load static %}
 {% include 'core/header.html' %}
 
-<h1>Meu Carrinho</h1>
+<div class="container" style="max-width: 900px; margin: auto; padding-top: 30px;">
 
-{% if cart.items.all %}
-<ul>
-    {% for item in cart.items.all %}
-        <li>
-            {% if item.product.imagem %}
-                <img src="{{ item.product.imagem.url }}" 
-                     alt="{{ item.product.nome }}" 
-                     width="80" style="border-radius: 6px;">
-            {% else %}
-                <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem" width="80">
-            {% endif %}
+    <h1>Meu Carrinho</h1>
 
-            <strong>{{ item.product.nome }}</strong>
-            <a href="{% url 'remove_one' item.product.id %}">-</a>
-            <span>{{ item.quantity }}</span>
-            <a href="{% url 'add_to_cart' item.product.id %}">+</a>
-            — Subtotal: R$ {{ item.subtotal }}
+    {% if cart.count %}
+        
+        <ul style="list-style: none; padding: 0;">
+            {% for item in cart %}
+                <li style="display: flex; align-items: center; margin-bottom: 20px;">
 
-            <a href="{% url 'remove_from_cart' item.pk %}">
-                Remover
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+                    <!-- Imagem -->
+                    <div style="margin-right: 15px;">
+                        {% if item.image %}
+                            <img src="{{ item.image }}" width="80" style="border-radius: 6px;">
+                        {% else %}
+                            <img src="{% static 'img/sem_foto.jpeg' %}" width="80" style="border-radius: 6px;">
+                        {% endif %}
+                    </div>
 
-<h3>Total: R$ {{ cart.total }}</h3>
+                    <!-- Informações -->
+                    <div style="flex-grow: 1;">
+                        <strong>{{ item.product.nome }}</strong><br>
 
-<!-- ===================================== -->
-<!-- BOTÃO DO STRIPE -->
-<!-- ===================================== -->
+                        <!-- Controles de quantidade -->
+                        <a href="{% url 'remove_one' item.product.id %}" style="margin-right: 6px;">-</a>
 
-<form action="{% url 'create_checkout_session' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit">Finalizar Pagamento</button>
-</form>
+                        <span style="font-weight: bold;">{{ item.quantity }}</span>
 
-{% else %}
-<p>Seu carrinho está vazio.</p>
-{% endif %}
+                        <a href="{% url 'add_to_cart' item.product.id %}" style="margin-left: 6px;">+</a>
+
+                        <br>
+                        <span>Subtotal: <strong>R$ {{ item.subtotal }}</strong></span>
+                    </div>
+
+                    <!-- Remover item -->
+                    <div>
+                        <a href="{% url 'remove_from_cart' item.product.id %}" 
+                           style="color: red; font-size: 14px;">
+                            Remover
+                        </a>
+                    </div>
+
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- TOTAL -->
+        <h3>Total: R$ {{ cart.total }}</h3>
+
+        <!-- CHECKOUT -->
+        <form action="{% url 'create_checkout_session' %}" method="POST" style="margin-top: 20px;">
+            {% csrf_token %}
+            <button type="submit" style="padding: 10px 20px; font-size: 16px;">
+                Finalizar Pagamento
+            </button>
+        </form>
+
+    {% else %}
+
+        <p style="font-size: 18px; margin-top: 20px;">Seu carrinho está vazio.</p>
+
+    {% endif %}
+
+</div>

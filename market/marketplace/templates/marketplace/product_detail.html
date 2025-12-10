@@ -3,29 +3,31 @@
 
 <div>
 
-    <h1>{{ products.nome }}</h1>
+    <h1>{{ product.nome }}</h1>
 
-    {% if products.imagem %}
-        <img src="{{ products.imagem.url }}" alt="{{ products.nome }}" width="80" style="border-radius: 6px;">
+    {% if product.imagem %}
+        <img src="{{ product.imagem.url }}" alt="{{ product.nome }}" width="120" style="border-radius: 6px;">
     {% else %}
-        <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem">
+        <img src="{% static 'img/sem_foto.jpeg' %}" alt="Sem imagem" width="120">
     {% endif %}
 
-    <p><strong>Categoria:</strong> {{ products.categoria.nome }}</p>
+    <p><strong>Categoria:</strong> {{ product.categoria.nome }}</p>
 
-    <p><strong>Descrição:</strong> {{ products.descricao }}</p>
+    <p><strong>Descrição:</strong> {{ product.descricao }}</p>
 
-    <p><strong>Preço:</strong> R$ {{ products.preco }}</p>
+    <p><strong>Preço:</strong> R$ {{ product.preco }}</p>
 
     <p>
         <strong>Disponibilidade:</strong>
-        {% if products.disponivel %}
+        {% if product.disponivel %}
             <span style="color: green;">Disponível</span>
         {% else %}
             <span style="color: red;">Indisponível</span>
         {% endif %}
     </p>
 
-    <a href="{% url 'add_to_cart' products.pk %}" class="btn">Adicionar ao Carrinho</a>
+    <a href="{% url 'add_to_cart' product.id %}" class="btn">
+        Adicionar ao Carrinho
+    </a>
 
 </div>
