@@ -41,11 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'core',
     'marketplace',
-    'orders',
-    'installers',
-    'quotes',
     'reviews',
-    'dashboard',
     'payments',
 ]
 
