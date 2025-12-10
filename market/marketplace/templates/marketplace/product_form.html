@@ -1,0 +1,16 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'marketplace/product_form.css' %}">
+
+<div class="form-container">
+
+    <h2>Cadastro de Produto</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn-save">Salvar</button>
+    </form>
+
+</div>

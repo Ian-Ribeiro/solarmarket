@@ -1,0 +1,12 @@
+.foto-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.step-fields input[type="file"] {
+    padding: 10px;
+}

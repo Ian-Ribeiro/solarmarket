@@ -1,0 +1,46 @@
+/* SUCESSO.CSS */
+
+.pay-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 10px;
+}
+
+.pay-card {
+    background: #fff;
+    text-align: center;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.pay-icon {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.pay-card h2 {
+    font-size: 1.9rem;
+    color: #0056B3;
+    margin-bottom: 10px;
+}
+
+.pay-card p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.btn-return {
+    display: inline-block;
+    padding: 14px 24px;
+    background: #FFCC00;
+    color: #333;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.btn-return:hover {
+    background: #e6b800;
+}

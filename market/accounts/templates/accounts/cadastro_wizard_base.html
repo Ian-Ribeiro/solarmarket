@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/wizard_base.css' %}">
+</head>
+
+<body>
+
+{% include 'core/header.html' %}
+
+<div class="wizard-container">
+
+    <h2 class="wizard-title">Etapa {{ wizard.steps.step1 }} de {{ wizard.steps.count }}</h2>
+
+    <div class="wizard-card">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+
+            {% block form_content %}{% endblock %}
+
+            <div class="wizard-buttons">
+                {% if wizard.steps.prev %}
+                    <button name="wizard_goto_step" value="{{ wizard.steps.prev }}" class="btn-secondary">Voltar</button>
+                {% endif %}
+                <button class="btn-primary">Continuar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

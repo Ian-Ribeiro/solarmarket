@@ -1,0 +1,16 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'accounts/cadastro_usuario.css' %}">
+
+<div class="cadastro-container">
+
+    <h2>Criar Conta</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn">Cadastrar</button>
+    </form>
+
+</div>

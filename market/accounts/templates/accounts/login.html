@@ -1,0 +1,22 @@
+{% load static %}
+{% include 'core/header.html' %}
+
+<link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+
+<div class="login-container">
+
+    <h2>Entrar</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    <div class="login-extra-links">
+        <p><a href="">Esqueceu a senha?</a></p>
+        <p><a href="{% url 'cadastrar' %}">Criar conta</a></p>
+    </div>
+
+</div>

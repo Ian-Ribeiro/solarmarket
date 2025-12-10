@@ -1,0 +1,10 @@
+.tipo-opcoes p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.tipo-opcoes input {
+    accent-color: #0056B3;
+}

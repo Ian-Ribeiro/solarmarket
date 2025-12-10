@@ -1,0 +1,35 @@
+/* INDEX.CSS */
+
+.index-container {
+    max-width: 800px;
+    margin: 70px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.index-container h1 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    color: #0056B3;
+}
+
+.index-container p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.btn-index {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #FFCC00;
+    color: #333;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-index:hover {
+    background: #e6b800;
+}

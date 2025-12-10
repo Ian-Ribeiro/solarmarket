@@ -1,0 +1,39 @@
+/* HEADER.CSS */
+
+.main-header {
+    width: 100%;
+    padding: 15px 25px;
+    background: #0056B3;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.header-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.header-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.header-nav a:hover {
+    background: rgba(255,255,255,0.25);
+}

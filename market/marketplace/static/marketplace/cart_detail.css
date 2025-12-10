@@ -1,0 +1,39 @@
+.cart-container {
+    max-width: 900px;
+    margin: 60px auto;
+}
+
+.cart-container h2 {
+    color: #0056B3;
+    margin-bottom: 20px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.total-final {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.btn-pay {
+    display: inline-block;
+    background: #FFCC00;
+    padding: 14px 26px;
+    border-radius: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}

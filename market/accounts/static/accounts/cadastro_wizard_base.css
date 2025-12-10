@@ -1,0 +1,41 @@
+.wizard-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+.wizard-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+}
+
+.wizard-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.wizard-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #0056B3;
+    color: white;
+}
+
+.btn-secondary {
+    background: #333;
+    color: white;
+}

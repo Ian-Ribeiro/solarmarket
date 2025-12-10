@@ -1,0 +1,23 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'core/header.css' %}">
+
+<header class="main-header">
+
+    <div class="header-left">
+        <a href="/" class="logo">SolarMarket</a>
+    </div>
+
+    <nav class="header-nav">
+        <a href="/">Início</a>
+        <a href="{% url 'product_list' %}">Produtos</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'minha_conta' %}">Minha Conta</a>
+            <a href="{% url 'logout' %}">Sair</a>
+        {% else %}
+            <a href="{% url 'login' %}">Entrar</a>
+        {% endif %}
+    </nav>
+
+</header>

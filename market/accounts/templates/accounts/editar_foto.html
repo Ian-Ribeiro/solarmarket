@@ -1,0 +1,21 @@
+{% load static %}
+{% include 'core/header.html' %}
+
+<link rel="stylesheet" href="{% static 'accounts/editar_foto.css' %}">
+
+<div class="foto-container">
+
+    <h2>Atualizar Foto</h2>
+
+    {% if profile.foto %}
+        <img class="foto-preview" src="{{ profile.foto.url }}">
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn" type="submit">Salvar</button>
+    </form>
+
+</div>

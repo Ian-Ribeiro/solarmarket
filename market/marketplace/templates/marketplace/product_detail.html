@@ -1,0 +1,27 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'marketplace/product_detail.css' %}">
+
+<div class="detail-container">
+
+    <div class="detail-left">
+        {% if produto.foto %}
+            <img src="{{ produto.foto.url }}" class="product-photo">
+        {% else %}
+            <img src="{% static 'core/staticcore/img/sem_foto.jpeg' %}" class="product-photo">
+        {% endif %}
+    </div>
+
+    <div class="detail-right">
+        <h2>{{ product.nome }}</h2>
+        <p class="price">R$ {{ product.preco }}</p>
+
+        <p>{{ produto.descricao }}</p>
+
+        <form method="post" action='{% url "add_to_cart" product.id %}'>
+            {% csrf_token %}
+            <button class="btn-add">Adicionar ao Carrinho</button>
+        </form>
+    </div>
+
+</div>

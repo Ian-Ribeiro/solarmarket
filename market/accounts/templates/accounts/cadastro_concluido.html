@@ -1,0 +1,10 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'accounts/cadastro_concluido.css' %}">
+
+<div class="concluido-container">
+    <h2>Cadastro concluído!</h2>
+    <p>Sua conta foi criada com sucesso.</p>
+
+    <a href="{% url 'login' %}" class="btn">Entrar</a>
+</div>

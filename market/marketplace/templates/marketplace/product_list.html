@@ -1,0 +1,35 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'marketplace/product_list.css' %}">
+
+<div class="product-list-container">
+
+    <h2>Produtos</h2>
+
+    <div class="product-grid">
+
+        {% for produto in products %}
+        <div class="product-card">
+
+            <!-- IMAGEM COM DEFAULT -->
+            {% if produto.foto %}
+                <img src="{{ produto.foto.url }}" class="product-img">
+            {% else %}
+                <img src="{% static 'core/img/sem_foto.jpeg' %}" class="product-img">
+            {% endif %}
+
+            <h3>{{ produto.nome }}</h3>
+            <p class="price">R$ {{ produto.preco }}</p>
+
+            <a href="{% url 'product_detail' produto.id %}" class="btn-detail">
+                Ver Detalhes
+            </a>
+
+        </div>
+        {% empty %}
+            <p>Nenhum produto cadastrado.</p>
+        {% endfor %}
+
+    </div>
+
+</div>

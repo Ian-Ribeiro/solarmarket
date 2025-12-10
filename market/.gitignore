@@ -1,0 +1,50 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---- Virtual Env ----
+.venv/
+venv/
+env/
+ENV/
+
+# ---- Django ----
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+
+# Migrations (opcional — use se NÃO quiser enviar migrations)
+# */migrations/*
+# !*/migrations/__init__.py
+
+
+# ---- Configurações sensíveis ----
+.env
+.env.*
+*.env
+*.ini
+*.cfg
+config.ini
+
+# ---- Stripe ----
+stripe_logs/
+stripe_test/
+stripe/secret.key
+stripe_secret.json
+
+# ---- IDEs ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- Sistema Operacional ----
+.DS_Store
+Thumbs.db
+
+# ---- Cache ----
+*.cache
+cache/

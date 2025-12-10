@@ -1,0 +1,20 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'marketplace/category_list.css' %}">
+
+<div class="cat-container">
+
+    <h2>Categorias</h2>
+
+    <ul class="cat-list">
+        {% for categoria in categorias %}
+        <li>
+            {{ categoria.nome }}
+            <a class="edit" href="{% url 'category_update' categoria.id %}">Editar</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'category_create' %}" class="btn-add-cat">Nova Categoria</a>
+
+</div>

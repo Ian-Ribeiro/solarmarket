@@ -1,0 +1,17 @@
+{% extends "accounts/cadastro_wizard_base.html" %}
+{% load static %}
+
+{% block form_content %}
+<link rel="stylesheet" href="{% static 'accounts/step_foto.css' %}">
+
+<h3>Foto de Perfil</h3>
+
+{% if wizard.form.instance.foto %}
+    <img class="foto-preview" src="{{ wizard.form.instance.foto.url }}">
+{% endif %}
+
+<div class="step-fields">
+    {{ form.as_p }}
+</div>
+
+{% endblock %}

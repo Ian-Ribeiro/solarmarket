@@ -1,0 +1,15 @@
+{% extends "accounts/cadastro_wizard_base.html" %}
+{% load static %}
+
+{% block form_content %}
+<link rel="stylesheet" href="{% static 'accounts/step_tipo_pessoa.css' %}">
+
+<h3>Você é pessoa física ou jurídica?</h3>
+
+<div class="tipo-opcoes">
+    {{ form.as_p }}
+</div>
+
+<p>Selecione uma opção para continuar.</p>
+
+{% endblock %}

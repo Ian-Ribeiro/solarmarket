@@ -1,0 +1,25 @@
+.form-container {
+    max-width: 450px;
+    margin: 60px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
+
+.form-container input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    margin-bottom: 15px;
+}
+
+.btn-save {
+    width: 100%;
+    padding: 14px;
+    background: #0056B3;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}

@@ -1,0 +1,44 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'marketplace/cart_detail.css' %}">
+
+<div class="cart-container">
+
+    <h2>Seu Carrinho</h2>
+
+    {% if cart %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Qtd</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in cart %}
+                <tr>
+                    <td>{{ item.product.nome }}</td>
+                    <td>R$ {{ item.product.preco }}</td>
+                    <td>{{ item.quantidade }}</td>
+                    <td>R$ {{ item.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="total-final">Total: R$ {{ cart_total }}</p>
+
+        <form action="{% url 'create_checkout_session' %}" method="POST">
+            {% csrf_token %}
+            <button class="btn-pay"type="submit">Finalizar Compra</button>
+        </form>
+
+
+    {% else %}
+        <p>Seu carrinho está vazio.</p>
+    {% endif %}
+
+</div>

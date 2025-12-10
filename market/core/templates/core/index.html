@@ -1,0 +1,16 @@
+{% load static %}
+{% include 'core/header.html' %}
+
+<link rel="stylesheet" href="{% static 'core/index.css' %}">
+
+<div class="index-container">
+
+    <h1>Bem-vindo ao SolarMarket</h1>
+
+    <p>O melhor lugar para encontrar produtos solares com segurança e agilidade.</p>
+
+    <a class="btn-index" href="{% url 'product_list' %}">
+        Ver Produtos
+    </a>
+
+</div>

@@ -1,0 +1,44 @@
+/* CANCELADO.CSS */
+
+.pay-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 10px;
+}
+
+.pay-card {
+    background: #fff;
+    text-align: center;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.pay-card.cancel h2 {
+    color: #B30000;
+}
+
+.pay-icon {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.pay-card p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.btn-return {
+    display: inline-block;
+    padding: 14px 24px;
+    background: #0056B3;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.btn-return:hover {
+    background: #003f89;
+}

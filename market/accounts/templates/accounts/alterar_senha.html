@@ -1,0 +1,13 @@
+{% load static %}
+{% include 'core/header.html' %}
+<link rel="stylesheet" href="{% static 'accounts/alterar_senha.css' %}">
+
+<div class="senha-container">
+    <h2>Alterar Senha</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn">Salvar</button>
+    </form>
+</div>
